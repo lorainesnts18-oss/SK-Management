@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK Management Login</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="../../Image/Logo.png" type="image/png" />
+  </head>
+  <body>
+    <main class="login-layout">
+      <section class="login-panel" aria-label="Login form">
+        <div class="brand">
+          <img src="../../Image/Logo.png" alt="SK Logo" class="brand-logo" />
+          <div class="brand-text">
+            <span class="title">SK Management</span>
+            <span class="subtitle">Sangguniang Kabataan</span>
+          </div>
+        </div>
+        <h1>Welcome Back</h1>
+        <p class="subtext">Sign in to continue to your dashboard.</p>
+
+        <form id="loginForm" novalidate>
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autocomplete="username"
+            placeholder="Enter your username"
+            required
+          />
+
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            required
+          />
+
+          <p id="errorMessage" class="error-message hidden" role="alert"></p>
+
+          <button type="submit" class="login-button">Login</button>
+
+          <div class="auth-links" aria-label="Account options">
+            <a href="../Registration/registration.html">Create account</a>
+            <a href="../ChangePassword/changepassword.html">Change password</a>
+          </div>
+        </form>
+
+        <p class="hint">Demo login: admin / admin123</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

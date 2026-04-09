@@ -1,0 +1,203 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="../../Image/Logo.png" type="image/png" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="sidebar-logo" />
+        <div class="sidebar-brand">
+          <span class="brand-title">SK Management</span>
+          <span class="brand-subtitle">Sangguniang Kabataan</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="nav-item active" href="dashboard.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="../Events/events.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <span>Events</span>
+        </a>
+        <a class="nav-item" href="../Calendar/calendar.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+          </svg>
+          <span>Calendar</span>
+        </a>
+        <a class="nav-item" href="../OrgChart/orgchart.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="5" r="3"/>
+            <path d="M12 8v4M6 16a3 3 0 1 0 0-4M18 16a3 3 0 1 1 0-4M6 12h12"/>
+          </svg>
+          <span>Org Chart</span>
+        </a>
+        <a class="nav-item" href="../Funds/funds.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Funds</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button type="button" class="logout-btn" id="logoutBtn">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+      <div class="mobile-brand">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="mobile-logo" />
+        <span>SK Management</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1>Dashboard</h1>
+          <p>Overview of updates, changes, and reminders for your barangay.</p>
+        </div>
+        <div class="page-header-stats">
+          <div class="stat-card">
+            <span class="stat-number" id="dashboardTotalEvents">0</span>
+            <span class="stat-label">Upcoming Events</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="dashboard-grid">
+        <div class="card updates-card">
+          <div class="card-header">
+            <h2>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20V10M18 20V4M6 20v-6"/>
+              </svg>
+              Updates
+            </h2>
+            <span class="badge" id="updatesCount">0</span>
+          </div>
+          <div id="updatesList" class="list-card"></div>
+        </div>
+
+        <div class="card changes-card">
+          <div class="card-header">
+            <h2>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+                <path d="M16 16h5v5"/>
+              </svg>
+              Changes
+            </h2>
+            <span class="badge secondary" id="changesCount">0</span>
+          </div>
+          <div id="changesList" class="list-card"></div>
+        </div>
+
+        <div class="card reminders-card">
+          <div class="card-header">
+            <h2>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              Reminders
+            </h2>
+            <span class="badge warning" id="remindersCount">0</span>
+          </div>
+          <div id="remindersList" class="list-card"></div>
+        </div>
+
+        <div class="card quick-note-card">
+          <div class="card-header">
+            <h2>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Add Quick Note
+            </h2>
+          </div>
+          <form id="quickNoteForm" class="quick-note-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="quickNoteType">Type</label>
+                <select id="quickNoteType">
+                  <option value="update">Update</option>
+                  <option value="change">Change</option>
+                  <option value="reminder">Reminder</option>
+                </select>
+              </div>
+              <div class="form-group flex-grow">
+                <label for="quickNoteText">Note</label>
+                <input
+                  id="quickNoteText"
+                  type="text"
+                  placeholder="Enter a short note..."
+                />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Add Note
+              </button>
+              <button type="button" class="btn btn-secondary" id="resetDashboardNotes">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+                </svg>
+                Reset All
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div class="overlay hidden" id="logoutOverlay">
+      <div class="overlay-panel">
+        <div class="overlay-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+        </div>
+        <h2>Logged Out</h2>
+        <p>
+          You have successfully logged out of SK Management. Click continue to return to the login page.
+        </p>
+        <button type="button" class="btn btn-primary" id="continueBtn">Continue</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK Management Events</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="../../Image/Logo.png" type="image/png" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="sidebar-logo" />
+        <div class="sidebar-brand">
+          <span class="brand-title">SK Management</span>
+          <span class="brand-subtitle">Sangguniang Kabataan</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="nav-item" href="../Dashboard/dashboard.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item active" href="events.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <span>Events</span>
+        </a>
+        <a class="nav-item" href="../Calendar/calendar.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+          </svg>
+          <span>Calendar</span>
+        </a>
+        <a class="nav-item" href="../OrgChart/orgchart.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="5" r="3"/>
+            <path d="M12 8v4M6 16a3 3 0 1 0 0-4M18 16a3 3 0 1 1 0-4M6 12h12"/>
+          </svg>
+          <span>Org Chart</span>
+        </a>
+        <a class="nav-item" href="../Funds/funds.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Funds</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button type="button" class="logout-btn" id="logoutBtn">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+      <div class="mobile-brand">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="mobile-logo" />
+        <span>SK Management</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1>Events Management</h1>
+          <p>Create, manage, and track all barangay events and meetings.</p>
+        </div>
+        <button type="button" class="btn btn-highlight" id="addEventBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Add New Event
+        </button>
+      </div>
+
+      <div class="content-grid">
+        <!-- Upcoming Events -->
+        <div class="card full-width">
+          <div class="card-header">
+            <h2>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              Upcoming Events
+            </h2>
+            <button type="button" class="btn btn-secondary btn-sm" id="refreshEvents">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+              Refresh
+            </button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Place</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="upcomingEventsTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Done Events -->
+        <div class="card full-width">
+          <div class="card-header">
+            <h2>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <path d="M22 4 12 14.01l-3-3"/>
+              </svg>
+              Completed Events
+            </h2>
+            <button type="button" class="btn btn-secondary btn-sm" id="clearDoneEvents">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+              </svg>
+              Clear All
+            </button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Place</th>
+                  <th>Type</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="doneEventsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Event Form Modal -->
+    <div class="overlay hidden" id="eventFormOverlay">
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h2>Add/Edit Event</h2>
+          <button type="button" class="modal-close" id="closeEventForm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <form id="eventForm" class="modal-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventName">Event Name</label>
+              <input id="eventName" type="text" placeholder="Title of event" required />
+            </div>
+            <div class="form-group">
+              <label for="eventPlace">Place</label>
+              <input id="eventPlace" type="text" placeholder="Location" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventDate">Date</label>
+              <input id="eventDate" type="date" required />
+            </div>
+            <div class="form-group">
+              <label for="eventTime">Time Start</label>
+              <input id="eventTime" type="time" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventType">Type</label>
+              <select id="eventType" required>
+                <option value="">Select type</option>
+                <option value="meeting">Meeting</option>
+                <option value="scholarship">Scholarship</option>
+                <option value="training">Training</option>
+                <option value="activity">Activity</option>
+                <option value="birthday">Birthday</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group" id="otherEventType" style="display: none">
+              <label for="eventTypeCustom">Specify Type</label>
+              <input id="eventTypeCustom" type="text" placeholder="Enter custom type" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="eventNotes">Notes</label>
+            <textarea id="eventNotes" placeholder="Additional notes..."></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Save Event</button>
+            <button type="button" class="btn btn-secondary" id="clearEventForm">Clear</button>
+          </div>
+          <p class="form-hint">Completed events will automatically move to the Done section.</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="overlay hidden" id="logoutOverlay">
+      <div class="overlay-panel">
+        <div class="overlay-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+        </div>
+        <h2>Logged Out</h2>
+        <p>You have successfully logged out of SK Management.</p>
+        <button type="button" class="btn btn-primary" id="continueBtn">Continue</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

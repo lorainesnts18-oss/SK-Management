@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK Management Funds</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="../../Image/Logo.png" type="image/png" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="sidebar-logo" />
+        <div class="sidebar-brand">
+          <span class="brand-title">SK Management</span>
+          <span class="brand-subtitle">Sangguniang Kabataan</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="nav-item" href="../Dashboard/dashboard.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="../Events/events.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <span>Events</span>
+        </a>
+        <a class="nav-item" href="../Calendar/calendar.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+          </svg>
+          <span>Calendar</span>
+        </a>
+        <a class="nav-item" href="../OrgChart/orgchart.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="5" r="3"/>
+            <path d="M12 8v4M6 16a3 3 0 1 0 0-4M18 16a3 3 0 1 1 0-4M6 12h12"/>
+          </svg>
+          <span>Org Chart</span>
+        </a>
+        <a class="nav-item active" href="funds.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Funds</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button type="button" class="logout-btn" id="logoutBtn">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+      <div class="mobile-brand">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="mobile-logo" />
+        <span>SK Management</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1>Funds Tracker</h1>
+          <p>Manage donations, solicitations, and expenses.</p>
+        </div>
+        <div class="balance-display">
+          <span class="balance-label">Current Balance</span>
+          <span class="balance-amount" id="currentBalance">PHP 0.00</span>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <button type="button" class="btn btn-highlight" id="addFundsBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Add Funds
+        </button>
+        <button type="button" class="btn btn-secondary" id="deductFundsBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"/>
+          </svg>
+          Deduct Funds
+        </button>
+      </div>
+
+      <div class="content-grid">
+        <div class="card full-width">
+          <div class="card-header">
+            <h2>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3v18h18"/>
+                <path d="M18 17l-5-5-4 4-3-3"/>
+              </svg>
+              Transaction History
+            </h2>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Details</th>
+                  <th>Receipt</th>
+                </tr>
+              </thead>
+              <tbody id="fundsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Add Funds Modal -->
+    <div class="overlay hidden" id="addFundsOverlay">
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h2>Add Funds</h2>
+          <button type="button" class="modal-close" id="closeAddFunds">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <form id="addFundsForm" class="modal-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="addAmount">Amount (PHP)</label>
+              <input id="addAmount" type="number" step="0.01" placeholder="0.00" required />
+            </div>
+            <div class="form-group">
+              <label for="addDate">Date</label>
+              <input id="addDate" type="date" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="addCategory">Category</label>
+              <select id="addCategory" required>
+                <option value="">Select category</option>
+                <option value="donation">Donation</option>
+                <option value="solicitation">Solicitation</option>
+                <option value="fundraising">Fundraising</option>
+                <option value="grant">Grant</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group" id="otherAddCategory" style="display: none">
+              <label for="addCategoryCustom">Specify Category</label>
+              <input id="addCategoryCustom" type="text" placeholder="Enter custom category" />
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Add Funds</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Deduct Funds Modal -->
+    <div class="overlay hidden" id="deductFundsOverlay">
+      <div class="modal-panel">
+        <div class="modal-header modal-header-danger">
+          <h2>Deduct Funds</h2>
+          <button type="button" class="modal-close" id="closeDeductFunds">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <form id="deductFundsForm" class="modal-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="deductAmount">Amount (PHP)</label>
+              <input id="deductAmount" type="number" step="0.01" placeholder="0.00" required />
+            </div>
+            <div class="form-group">
+              <label for="deductDate">Date</label>
+              <input id="deductDate" type="date" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="deductCategory">Category</label>
+              <select id="deductCategory" required>
+                <option value="">Select category</option>
+                <option value="transportation">Transportation</option>
+                <option value="food">Food</option>
+                <option value="materials">Materials</option>
+                <option value="venue">Venue</option>
+                <option value="utilities">Utilities</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group" id="otherDetails" style="display: none">
+              <label for="deductDetails">Details</label>
+              <input id="deductDetails" type="text" placeholder="Specify other category" />
+            </div>
+          </div>
+          <div class="form-group" id="receiptUpload" style="display: none">
+            <label for="receiptFile">Receipt Photo</label>
+            <input id="receiptFile" type="file" accept="image/*" />
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Deduct Funds</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="overlay hidden" id="logoutOverlay">
+      <div class="overlay-panel">
+        <div class="overlay-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+        </div>
+        <h2>Logged Out</h2>
+        <p>You have successfully logged out of SK Management.</p>
+        <button type="button" class="btn btn-primary" id="continueBtn">Continue</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

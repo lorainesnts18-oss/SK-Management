@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK Management Org Chart</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="../../Image/Logo.png" type="image/png" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="sidebar-logo" />
+        <div class="sidebar-brand">
+          <span class="brand-title">SK Management</span>
+          <span class="brand-subtitle">Sangguniang Kabataan</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="nav-item" href="../Dashboard/dashboard.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="../Events/events.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <span>Events</span>
+        </a>
+        <a class="nav-item" href="../Calendar/calendar.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+          </svg>
+          <span>Calendar</span>
+        </a>
+        <a class="nav-item active" href="orgchart.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="5" r="3"/>
+            <path d="M12 8v4M6 16a3 3 0 1 0 0-4M18 16a3 3 0 1 1 0-4M6 12h12"/>
+          </svg>
+          <span>Org Chart</span>
+        </a>
+        <a class="nav-item" href="../Funds/funds.html">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Funds</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button type="button" class="logout-btn" id="logoutBtn">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+      <div class="mobile-brand">
+        <img src="../../Image/Logo.png" alt="SK Logo" class="mobile-logo" />
+        <span>SK Management</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1>Organizational Chart</h1>
+          <p>A clear structure for SK roles and responsibilities.</p>
+        </div>
+        <div class="page-actions">
+          <button type="button" class="btn btn-highlight" id="addRowBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+            Add Row
+          </button>
+          <button type="button" class="btn btn-secondary" id="addPositionBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M19 8v6M22 11h-6"/>
+            </svg>
+            Add Position
+          </button>
+        </div>
+      </div>
+
+      <div class="chart-grid" id="chartGrid">
+        <!-- Chart will be rendered here dynamically -->
+      </div>
+    </main>
+
+    <!-- Logout Modal -->
+    <div class="overlay hidden" id="logoutOverlay">
+      <div class="overlay-panel">
+        <div class="overlay-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+        </div>
+        <h2>Logged Out</h2>
+        <p>You have successfully logged out of SK Management.</p>
+        <button type="button" class="btn btn-primary" id="continueBtn">Continue</button>
+      </div>
+    </div>
+
+    <!-- Add Row Modal -->
+    <div class="overlay hidden" id="addRowOverlay">
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h2>Add New Row</h2>
+          <button type="button" class="modal-close" id="cancelAddRow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <form id="addRowForm" class="modal-form">
+          <div class="form-group">
+            <label for="newRowTitle">Position Title</label>
+            <input id="newRowTitle" type="text" placeholder="Enter position title" required />
+          </div>
+          <div class="form-group">
+            <label for="newRowDescription">Description</label>
+            <textarea id="newRowDescription" placeholder="Enter position description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="newRowPhoto">Photo (optional)</label>
+            <input id="newRowPhoto" type="file" accept="image/*" />
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Add Row</button>
+            <button type="button" class="btn btn-secondary" id="cancelAddRowBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Position Modal -->
+    <div class="overlay hidden" id="addPositionOverlay">
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h2>Add New Position</h2>
+          <button type="button" class="modal-close" id="cancelAddPosition">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <form id="addPositionForm" class="modal-form">
+          <div class="form-group">
+            <label for="newPositionTitle">Position Title</label>
+            <input id="newPositionTitle" type="text" placeholder="Enter position title" required />
+          </div>
+          <div class="form-group">
+            <label for="newPositionDescription">Description</label>
+            <textarea id="newPositionDescription" placeholder="Enter position description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="newPositionPhoto">Photo (optional)</label>
+            <input id="newPositionPhoto" type="file" accept="image/*" />
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Add Position</button>
+            <button type="button" class="btn btn-secondary" id="cancelAddPositionBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Position Modal -->
+    <div class="overlay hidden" id="editPositionOverlay">
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h2>Edit Position</h2>
+          <button type="button" class="modal-close" id="cancelEditPosition">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <form id="editPositionForm" class="modal-form">
+          <div class="form-group">
+            <label for="editPositionTitle">Position Title</label>
+            <input id="editPositionTitle" type="text" placeholder="Enter position title" required />
+          </div>
+          <div class="form-group">
+            <label for="editPositionDescription">Description</label>
+            <textarea id="editPositionDescription" placeholder="Enter position description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editPositionPhoto">Photo (optional)</label>
+            <input id="editPositionPhoto" type="file" accept="image/*" />
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-secondary" id="cancelEditPositionBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
