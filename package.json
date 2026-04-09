@@ -1,0 +1,22 @@
+{
+  "name": "sk-management-(2)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node \"SK management/server.js\" && start \"\" \"SK management/index.html\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorainesnts18-oss/SK-Management.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/lorainesnts18-oss/SK-Management/issues"
+  },
+  "homepage": "https://github.com/lorainesnts18-oss/SK-Management#readme"
+}
