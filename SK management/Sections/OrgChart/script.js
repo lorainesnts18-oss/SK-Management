@@ -104,6 +104,11 @@ function renderOrgChart() {
               <div style="margin-top: 10px; display: flex; gap: 8px;">
                 <button type="button" class="small-button secondary" onclick="editPosition(${position.id})" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
                 <button type="button" class="small-button danger" onclick="deletePosition(${position.id})" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                ${
+                  position.photo
+                    ? `<button type="button" class="small-button neutral" onclick="removePhoto(${position.id})" style="padding: 6px 12px; font-size: 0.8rem;">Remove Photo</button>`
+                    : ''
+                }
               </div>
             </div>
           `,
@@ -215,6 +220,28 @@ async function deletePosition(positionId) {
     await refreshOrgChart();
   } catch (error) {
     alert(error.message || "Unable to delete this position.");
+  }
+}
+
+async function removePhoto(positionId) {
+  const canRemove = confirm("Are you sure you want to remove the photo for this position?");
+  if (!canRemove) return;
+
+  const position = findPositionById(positionId);
+  if (!position) return;
+
+  try {
+    await apiRequest(`/orgchart/positions/${positionId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        title: position.title,
+        description: position.description,
+        photo: null,
+      }),
+    });
+    await refreshOrgChart();
+  } catch (error) {
+    alert(error.message || "Unable to remove photo.");
   }
 }
 
